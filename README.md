@@ -1,4 +1,4 @@
-# Xiaozujian-Plugin 米游社桌面小组件信息
+# Xiaozujian-Plugin 适用于 Yunzai-Bot 的 米游社桌面小组件信息
 - 从米游社的桌面小组件中获取实时便笺的信息,以达到不需要验证码的效果
 
 ## 前置插件
