@@ -300,7 +300,7 @@ export class Mytest extends plugin {
                 user_id: this.e.user_id,
                 uid: this.e.user.getUid(),
                 uin: this.e.bot.uin,
-                group_id: this.e.group.group_id
+                group_id: this.e.group ? this.e.group.group_id : null
             })
             await configSave()
             this.reply("已开启自动检查树脂，将在每个整点检查树脂，超过160将会进行提醒。请注意，提醒并不会进行@，请关注群消息。")
