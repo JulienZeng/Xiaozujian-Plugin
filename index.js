@@ -324,4 +324,52 @@ export class Mytest extends plugin {
     }
 }
 
+import { HttpsProxyAgent } from 'https-proxy-agent'
+const proxyAgent = new HttpsProxyAgent('http://127.0.0.1:10809');
+const API = [
+    "https://kfc-crazy-thursday.vercel.app/api/index",
+    "http://api.jixs.cc/api/wenan-fkxqs/index.php",
+    "https://vme.im/api?format=text"
+]
+export class CrazyThursday extends plugin {
+    constructor() {
+        super({
+            name: "疯狂星期四",
+            dsc: "获取一条肯德基疯狂星期四文案",
+            /** https://oicqjs.github.io/oicq/#events */
+            event: "message",
+            priority: 5000,
+            rule: [
+                {
+                    /** 命令正则匹配 */
+                    reg: "^#(?=KFC|kfc|疯狂星期四|(请我.*肯德基)|(.*肯德基.*疯狂星期四)|(v.*50)).*$",
+                    /** 执行方法 */
+                    fnc: "crazyThursday",
+                    permission: "all",
+                }
+            ]
+        })
+    }
+
+    getRandomElement() {
+        const randomIndex = Math.floor(Math.random() * API.length);
+        return API[randomIndex];
+    }
+
+    async crazyThursday() {
+
+        axios.get(this.getRandomElement(), {
+            httpAgent: proxyAgent,
+            httpsAgent: proxyAgent
+        })
+            .then(res => {
+                return this.reply(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+                return this.reply("讨厌，我的文案被你掏空啦！")
+            });
+    }
+}
+
 logger.info(logger.green("- 米游社小组件插件 加载完成"))
