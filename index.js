@@ -12,7 +12,7 @@ const { config, configSave } = await makeConfig("AutoCheckResin", {
     user: []
 }, {})
 
-export class Mytest extends plugin {
+export class Xiaozujian extends plugin {
     constructor() {
         super({
             name: "小组件",
