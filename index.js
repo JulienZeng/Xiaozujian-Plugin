@@ -186,9 +186,9 @@ export class Mytest extends plugin {
             }
 
             this.getInfo(stoken).then((res) => {
-                if(res.data.current_resin){
+                if (res.data.current_resin) {
                     resolve(res.data)
-                }else{
+                } else {
                     reject(res.data)
                 }
             }).catch((err) => {
@@ -278,11 +278,11 @@ export class Mytest extends plugin {
     initAutoCheckTask() {
         for (const item of config.user) {
             this.autoCheckResin(item.user_id, item.uid).then((res) => {
-                if(item.group_id){
-                    Bot.sendGroupMsg(item.uin,item.group_id,
+                if (item.group_id) {
+                    Bot.sendGroupMsg(item.uin, item.group_id,
                         this.dateToString() + " " +
                         res)
-                }else{
+                } else {
                     Bot.sendFriendMsg(item.uin, item.user_id)
                 }
             }).catch(err => {
